@@ -28,11 +28,21 @@ public:
 
     void Square();
     void Volume();
+    void All();
 
     ~Circle() {
         std::cout << "запустился деструктор Circle" << std::endl;
     }
 };
+void Circle::All(){
+    if (((R <0 )|| (r<0 )||( l<0 )||(h<0 ))||(l != sqrt((R-r)*(R-r)+(h*h)))){
+        std::cout<<" не может быть отрицатеьной  b длин"<<std::endl;
+    }
+    else{
+        this->Square();
+        this->Volume();
+    }
+}
 
 
 void Circle::Square() {
@@ -87,10 +97,10 @@ void task3(double x,double y,double b) {
     double res;
     double underlog = b - y;
     double undersqrt = b - x;
-    if ((underlog < 0)||(undersqrt<0)){
+    if ((underlog <= 0)||(undersqrt<0)){
         std::cout << "логарифм не определен, либо корень меньше нуля" << std::endl;
     }
-    else if ((underlog > 0) && (undersqrt >= 0)) {
+    else if ((underlog >= 0) && (undersqrt >= 0)) {
         res = (log(underlog)) * (sqrt(undersqrt));
         std::cout << res << std::endl;
     }
@@ -101,9 +111,15 @@ void task4(double n) {
     int count = 1;
     y = std::modf(n, &x);
     for (int i = x; i < x + 11; ++i) {
+        if ((y ==0)and(x>0)){
  
-        std::cout <<std::endl<<"номер числа:"<<count<< std::endl<<"число: " << i << "." << y << std::endl << "целая часть: " << x << std::endl << "дробная часть: " << y << std::endl << std::endl;
+        std::cout <<std::endl<<"номер числа:"<<count<< std::endl<<"число: " << i <<std::endl << "целая часть: " << x <<std::endl;
         count++;
+        }
+        else{
+            std::cout<<"число не натуральное"<<std::endl;
+            break;
+        }
     }
 }
 
@@ -135,8 +151,7 @@ int main() {
     std::cin >> R >> r >> l >> h;
     
     Circle a(R, r, l, h);
-    a.Square();
-    a.Volume();
+    a.All();
 
     std::cout << std::endl << std::endl << "2 задание" << std::endl << std::endl << "введите a и x" << std::endl;
     double a2, x2;
