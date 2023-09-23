@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <cmath>
 
 static const std::string file_name = "file.txt";
 
@@ -10,34 +11,82 @@ private:
     std::vector<char> abc;
     std::vector<int> vec;
     std::vector<char> result;
+    int b;
+    double S,p,n,m,r;
 public:
-    Homework(){
-        std::string start = this->WorkWithFile();
-        for (char i : start) {
-            abc.push_back(i);
-        }
-        for (char & i : abc) {
-            vec.push_back((int)i);
-        }
-        this->bubbleSort(vec);
-
-        for(int & i : vec){
-            result.push_back((char)(i));
-        }
-
-        for(char i : result){
-            std::cout<<i;
-        }
-
+    Homework(double S, double n, double p){
+        this->S = S;
+        this->n = n;
+        this->p=p;
     }
+    void ReadInt();
+    void Base();
     void Swap(int* a, int* b);
     void bubbleSort(std::vector<int>& array);
     std::string WorkWithFile();
+    std::pair<int,std::string> fuSuda();
 };
 
 
 int main(){
-    Homework();
+    setlocale(LC_ALL, "Russian");
+    double S,p,n,m;
+    std::cin>>S>>p>>n;
+    Homework a(S,n,p);
+    std::string comment = a.fuSuda().second;
+    m = a.fuSuda().first;
+    if(m==0){
+        std::cout<<comment<<std::endl;
+    }
+    else{
+        std::cout<<comment<<m;
+    }
+
+/*    a.Base();
+    a.ReadInt();*/
+
+}
+
+
+std::pair<int, std::string> Homework::fuSuda() {
+    r= p/100;
+    if (S==0){
+        return std::make_pair(0, "debt is 0: ");
+    }
+    else{
+        double under = (12*(pow((1+r),n)-1));
+        double up = (S*(r*(pow((1+r),n))));
+        if ((under == 0)||(up == 0)){
+         return std::make_pair(NULL,"expression error: ");
+        }
+        else{
+             m = up/under;
+            if (m>=0){
+                return std::make_pair(m, "the result is: ");
+            }
+            else if(m<0){
+                return std::make_pair(NULL, "cannot be a negative expression: ");
+            }
+        }
+    }
+}
+
+void Homework::ReadInt() {
+    std::ifstream file(file_name);
+    do
+    {
+        if(file >> b)
+        {
+            std::cout << b;
+        }
+        else
+        {
+            file.clear();
+            file.ignore(1, ' ');
+        }
+    }
+    while(!file.eof());
+    file.close();
 }
 
 void Homework::Swap(int* a, int* b)
@@ -77,5 +126,23 @@ std::string Homework::WorkWithFile()
         {
             return readline;
         }
+    }
+}
+void Homework::Base() {
+    std::string start = this->WorkWithFile();
+    for (char i: start) {
+        abc.push_back(i);
+    }
+    for (char &i: abc) {
+        vec.push_back((int) i);
+    }
+    this->bubbleSort(vec);
+
+    for (int &i: vec) {
+        result.push_back((char) (i));
+    }
+
+    for (char i: result) {
+        std::cout << i;
     }
 }
