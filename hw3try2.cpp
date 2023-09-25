@@ -18,7 +18,8 @@ public:
         this->S = S;
         this->n = n;
         this->p=p;
-    }
+    };
+    Homework();
     void ReadInt();
     void Base();
     void Swap(int* a, int* b);
@@ -28,27 +29,29 @@ public:
 };
 
 
-int main(){
+int main() {
     setlocale(LC_ALL, "Russian");
-    double S,p,n,m;
-    std::cin>>S>>p>>n;
-    Homework a(S,n,p);
-    std::string comment = a.fuSuda().second;
-    m = a.fuSuda().first;
-    if(m==0){
-        std::cout<<comment<<std::endl;
-    }
-    else{
-        std::cout<<comment<<m;
-    }
 
-/*    a.Base();
-    a.ReadInt();*/
+    double S, p, n, m;
+    std::cout<<"print S, p,n"<<std::endl;
+    std::cin >> S >> p >> n;
+    Homework a(S, p, n);
+    m = a.fuSuda().first;
+    std::string comment = a.fuSuda().second;
+    if (m == 0) {
+        std::cout << comment << std::endl;
+    } else {
+        std::cout << comment << m<<std::endl;
+    }
+    a.WorkWithFile();
+    std::cout << "only numbers: ";
+    a.ReadInt();
+    std::cout << std::endl << "task 5" << "sorted: ";
+    a.Base();
 
 }
 
-
-std::pair<double, std::string> Homework::fuSuda() {
+std::pair<double, std::string> Homework::fuSuda(){
     r= p/100;
     if (S<=0){
         return std::make_pair(NULL, "the numbers cant be less than: 0 ");
@@ -109,9 +112,9 @@ std::string Homework::WorkWithFile()
 {
     std::string readline;
 
-    std::ifstream  iff(file_name);
-    if(iff.bad()){
-        std::ofstream oFile(file_name);
+    std::ifstream  iff("file.txt");
+    if(fopen("file.txt", "r") == NULL){
+        std::ofstream oFile("file.txt");
     }
     std::ifstream  flow(file_name);
     if (!flow.is_open()){
@@ -135,7 +138,7 @@ void Homework::Base() {
     this->bubbleSort(vec);
 
     for (int &i: vec) {
-        result.push_back((char) (i));
+        result.push_back((char) (tolower(i)));
     }
 
     for (char i: result) {
