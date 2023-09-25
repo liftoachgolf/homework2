@@ -142,3 +142,35 @@ void Homework::Base() {
         std::cout << i;
     }
 }
+
+/*
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+    double S,n,mevery,m,r;
+
+    double rTemp = 0.000001;
+    cout << "----------------------- "<<endl;
+    cout << "summ = ";
+    cin >> S;
+    cout << "amont of years = ";
+    cin >> n;
+    cout << "everymothpay = ";
+    cin >> mevery;
+
+
+    if ((n <= 0) ||( S <= 0)||(mevery<=0)) {
+        cout << "Incorrect data"<<std::endl;
+    }
+
+    while (m < mevery) {
+        r = rTemp;
+        m = S * r * pow(1 + r, n) / (12 * (pow(1 + r, n) - 1));
+        rTemp = rTemp + 0.000001;
+    }
+
+    cout << "p = " << r * 100 << "%" << endl;
+}
+*/
