@@ -24,7 +24,7 @@ public:
     void Swap(int* a, int* b);
     void bubbleSort(std::vector<int>& array);
     std::string WorkWithFile();
-    std::pair<int,std::string> fuSuda();
+    std::pair<double,std::string> fuSuda();
 };
 
 
@@ -48,27 +48,23 @@ int main(){
 }
 
 
-std::pair<int, std::string> Homework::fuSuda() {
+std::pair<double, std::string> Homework::fuSuda() {
     r= p/100;
-    if (S==0){
-        return std::make_pair(0, "debt is 0: ");
+    if (S<=0){
+        return std::make_pair(NULL, "the numbers cant be less than: 0 ");
     }
-    else{
-        double under = (12*(pow((1+r),n)-1));
-        double up = (S*(r*(pow((1+r),n))));
-        if ((under == 0)||(up == 0)){
-         return std::make_pair(NULL,"expression error: ");
-        }
-        else{
-             m = up/under;
-            if (m>=0){
-                return std::make_pair(m, "the result is: ");
-            }
-            else if(m<0){
-                return std::make_pair(NULL, "cannot be a negative expression: ");
-            }
-        }
+    else if (p == 0) {
+        m = S / (12 * n);
     }
+
+    else {
+        r = p / 100;
+        m = S * r * pow(1 + r, n) / (12 * (pow(1 + r, n) - 1));
+    }
+    if (12 * (pow(1 + r, n) - 1) < 0) {
+        return std::make_pair(NULL, "u cant deletb on ");
+    }
+    return std::make_pair(m,"the result is: ");
 }
 
 void Homework::ReadInt() {
