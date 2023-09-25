@@ -53,7 +53,7 @@ int main() {
 
 std::pair<double, std::string> Homework::fuSuda(){
     r= p/100;
-    if (S<=0){
+    if ((n <= 0) ||( S <= 0)||(p<=0)){
         return std::make_pair(NULL, "the numbers cant be less than: 0 ");
     }
     else if (p == 0) {
