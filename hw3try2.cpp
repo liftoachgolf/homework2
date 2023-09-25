@@ -164,6 +164,7 @@ int main() {
     if ((n <= 0) ||( S <= 0)||(mevery<=0)) {
         cout << "Incorrect data"<<std::endl;
     }
+    else{
 
     while (m < mevery) {
         r = rTemp;
@@ -172,5 +173,6 @@ int main() {
     }
 
     cout << "p = " << r * 100 << "%" << endl;
+}
 }
 */
