@@ -28,14 +28,14 @@ std::string First::open(std::string stringline)
 		std::ofstream oFile("file.txt");
 		oFile.close();
 	}
-	 
-		std::ofstream out;
-		out.open("file.txt");
-		if (out.is_open())
-		{
-			out << stringline;	
-		}
-	
+
+	std::ofstream out;
+	out.open("file.txt");
+	if (out.is_open())
+	{
+		out << stringline;
+	}
+
 	return "ss";
 }
 double First::read() {
@@ -62,11 +62,11 @@ int sign(double x) {
 		return -1;
 	}
 }
-void USA(){
+void USA() {
 	char one[] = "_________________________________________________\n";
 	char two[] = "********_________________________________________\n";
 	std::cout << one;
-	for (int i = 0; i < 6;++i) {
+	for (int i = 0; i < 6; ++i) {
 		std::cout << two;
 	}
 	for (int i = 0; i < 6; ++i) {
@@ -75,59 +75,52 @@ void USA(){
 }
 
 void clear() {
-	for(int i = 0; i<5; ++i){
+	for (int i = 0; i < 5; ++i) {
 		std::cout << std::endl << std::endl;
 	}
 }
 
-int getSin(double x, int d_y = 25) {
-	return  (int)((sin(x) * 100) + d_y / 2);
-}
-
-void gotoxy(int x, int y) {
-	COORD xy;
-	xy.X = x;
-	xy.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), xy);
-}
 
 void Sinusoid() {
-	for (double x = -100; x < 100; x += 0.01) {
-		int y = getSin(x);
-		if (y <= 1) {
-			continue;
-		}
-		gotoxy((int)(x * 10), y);
-		std::cout << '*';
-	}
-	for (int i = 0; i < 120; i++) {
-		gotoxy(i, 0);
-		std::cout << ' ';
-	}
-	gotoxy(0, 26);
+	{
+		double width = 200; 
+		double height = 41; 
 
+		std::vector<std::string> sing(height, std::string(width, ' ')); 
+		sing[height/4] = std::string(width, '-');
+
+
+		for (double i  = 0; i < width; i+=0.1) {
+			sing[(10 * sin(i / 4.5) + 10)][i] = 'X';
+		}
+
+		for (int s = 0; s < sing.size(); s++) {
+			std::cout << sing[s] << '\n';
+		}
+
+	}
 }
 
 
 int main() {
-	First firsty;
-	File* filee = &firsty;
-	std::cout << "enter number separated by spaces:  ";
-	std::string line;
-	getline(std::cin, line);
-	std::cout << line << std::endl;
-	std::string lineout = filee->open(line);
+	//First firsty;
+	//File* filee = &firsty;
+	//std::cout << "enter number separated by spaces:  ";
+	//std::string line;
+	//getline(std::cin, line);
+	//std::cout << line << std::endl;
+	//std::string lineout = filee->open(line);
 
-	double result = filee->read();
-	std::cout << result << std::endl;
+	//double result = filee->read();
+	//std::cout << result << std::endl;
 
-	std::cout << "enter x for second task: ";
-	double x;
-	std::cin >> x;
-	std::cout << "the sign of xis: " << sign(x) << std::endl;
-	USA();
+	//std::cout << "enter x for second task: ";
+	//double x;
+	//std::cin >> x;
+	//std::cout << "the sign of xis: " << sign(x) << std::endl;
+	///*USA();*/
 
 	Sinusoid();
-
+	std::cin.get();
 
 }
