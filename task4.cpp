@@ -50,6 +50,63 @@ double First::read() {
 	return summ;
 
 }
+#include <iostream> 
+#include <string>
+
+int decode(char i) {
+	switch (i) {
+	case 'I':
+		return 1;
+	case 'V':
+		return 5;
+	case 'X':
+		return 10;
+	case 'L':
+		return 50;
+	case 'C':
+		return 100;
+	case 'D':
+		return 500;
+	case 'M':
+		return 1000;
+	}
+	return -2;
+	
+}
+
+int RomeToInt(std::string x) {
+	int res = 0; 
+	int last = decode(x[0]);
+	int counter = 1; 
+	
+	for (int i = 1; i < x.size(); i++) {
+		if (counter > 2) {
+			std::cout << "Incorrect number";
+			return 2;
+		}
+		          
+		int rimLine = decode(x[i]);
+		
+		if (last == rimLine)
+			counter++;
+	
+		if (last < rimLine) 
+			res -= (last * counter);
+
+		if (last > rimLine)
+			res += (last * counter);
+			
+		if (last != rimLine) 
+			counter = 1;
+			
+		last = rimLine;
+	}
+	
+	if (last == decode(x[x.size() - 1])) {
+		res += decode(x[x.size() - 1]) * counter;
+	}
+	return res;
+}
 
 int sign(double x) {
 	if (x > 0) {
