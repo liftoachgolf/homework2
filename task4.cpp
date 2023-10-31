@@ -235,6 +235,7 @@ int GetArabicNum()
 	return result;
 }
 
+
 void Task6()
 {
 	std::cout << "Enter roman number: " << std::endl;
@@ -266,87 +267,86 @@ void task7()
 }
 
 void task8() {
-	
-		double matrix1[3][4]
-		{
-			{5, 2, 0, 10},
-			{3, 5, 2, 5},
-			{20, 0, 0, 0}
-		},
-			matrix2[4][2]
-		{
-			{1.20, 0.50},
-			{2.80, 0.40},
-			{5.00, 1.00},
-			{2.00, 1.50}
-		},
-			matrix3[3][2],
-			result = 0,
-			maxIncome = 0,
-			minIncome = 100000000,
-			totalIncome = 0,
-			maxComission = 0,
-			minComission = 100000000,
-			totalComission = 0,
-			totalMoney = 0;
 
-		for (int i = 0; i < 3; ++i)
+	double matrix1[3][4]
+	{
+		{5, 2, 0, 10},
+		{3, 5, 2, 5},
+		{20, 0, 0, 0}
+	},
+		matrix2[4][2]
+	{
+		{1.20, 0.50},
+		{2.80, 0.40},
+		{5.00, 1.00},
+		{2.00, 1.50}
+	},
+		matrix3[3][2],
+		result = 0,
+		maxIncome = 0,
+		minIncome = 100000000,
+		totalIncome = 0,
+		maxComission = 0,
+		minComission = 100000000,
+		totalComission = 0,
+		totalMoney = 0;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = 0; j < 2; ++j)
 		{
-			for (int j = 0; j < 2; ++j)
+			for (int k = 0; k < 4; ++k)
 			{
-				for (int k = 0; k < 4; ++k)
-				{
-					result += matrix1[i][k] * matrix2[k][j];
-				}
-				matrix3[i][j] = result;
-				if (j == 0)
-				{
-					if (result > maxIncome)
-					{
-						maxIncome = result;
-					}
-					if (result < minIncome)
-					{
-						minIncome = result;
-					}
-					totalIncome += result;
-				}
-				if (j == 1)
-				{
-					if (result > maxComission)
-					{
-						maxComission = result;
-					}
-					if (result < minComission)
-					{
-						minComission = result;
-					}
-					totalComission += result;
-				}
-				totalMoney += result;
-				result = 0;
-				std::cout << std::setw(5) << matrix3[i][j] << " ";
+				result += matrix1[i][k] * matrix2[k][j];
 			}
-			std::cout << std::endl;
+			matrix3[i][j] = result;
+			if (j == 0)
+			{
+				if (result > maxIncome)
+				{
+					maxIncome = result;
+				}
+				if (result < minIncome)
+				{
+					minIncome = result;
+				}
+				totalIncome += result;
+			}
+			if (j == 1)
+			{
+				if (result > maxComission)
+				{
+					maxComission = result;
+				}
+				if (result < minComission)
+				{
+					minComission = result;
+				}
+				totalComission += result;
+			}
+			totalMoney += result;
+			result = 0;
+			std::cout << std::setw(5) << matrix3[i][j] << " ";
 		}
-		
-			std::cout << std::endl;
-			std::cout << "max dohod: " << maxIncome << std::endl;
-			std::cout << "min dohod: " << minIncome << std::endl;
-			std::cout << "max comssia: " << maxComission << std::endl;
-			std::cout << "min comissia: " << minComission << std::endl;
-			std::cout << "polny dohod: " << totalIncome << std::endl;
-			std::cout << "full comissia: " << totalComission << std::endl;
-			std::cout << "vsego deneg: " << totalMoney << std::endl;
-		
+		std::cout << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << "max dohod: " << maxIncome << std::endl;
+	std::cout << "min dohod: " << minIncome << std::endl;
+	std::cout << "max comssia: " << maxComission << std::endl;
+	std::cout << "min comissia: " << minComission << std::endl;
+	std::cout << "polny dohod: " << totalIncome << std::endl;
+	std::cout << "full comissia: " << totalComission << std::endl;
+	std::cout << "vsego deneg: " << totalMoney << std::endl;
+
 }
 std::list<int> numsSys;
 std::string nums = "1234567890ABCDEF";
-
 template <typename T>
 std::string ToString(T val)
 {
-	ostringstream oss;
+	std::ostringstream oss;
 	oss << val;
 	return oss.str();
 }
@@ -564,6 +564,45 @@ void task9()
 
 	std::cout << minus + ConvertToOther(ConvertToDecimal(num, inp), req) << std::endl;
 }
+void Pramygol()
+{
+	double a, b;
+	std::cout << "enter dlinu i shirinu" << std::endl;
+	std::cin >> a >> b;
+	if (a > 0 && b > 0)
+		std::cout<< a * b<<std::endl;
+	else
+	{
+		std::cout << "incorrect ";
+	}
+}
+
+void Treyg()
+{
+	double a, b;
+	std::cout << "vvedite osnovanie i visotu" << std::endl;
+	std::cin >> a >> b;
+	if (a > 0 && b > 0)
+		std::cout<<( a * b)*0.5<<std::endl;
+	else
+	{
+		std::cout << "incorrect"<<std::endl;
+
+	}
+}
+
+void Kryg()
+{
+	double a;
+	std::cout << "vvedite radius" << std::endl;
+	std::cin >> a;
+	if (a > 0)
+		std::cout << a * a * 3.14 << std::endl;
+	else
+	{
+		std::cout << "incorrect";
+	}
+}
 
 
 
@@ -583,13 +622,15 @@ int main() {
 	//double x;
 	//std::cin >> x;
 	//std::cout << "the sign of xis: " << sign(x) << std::endl;
-	///*USA();*/
+	//USA();
 
-	/*Sinusoid();
-	std::cin.get();*/
-	//Task6();
+	//Sinusoid();
+	//std::cin.get();
+	Task6();
 	//task7();
 	//task8();
-	task9();
-
+	//task9();
+	//Pramygol();
+	//Kryg();
+	//Treyg();
 }
