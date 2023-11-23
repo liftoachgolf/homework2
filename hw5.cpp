@@ -140,23 +140,18 @@ bool cmp(pair<string, int>& a,
     return a.second < b.second;
 }
 
-// Function to sort the map according
-// to value in a (key-value) pairs
+
 void Sort(map<string, int>& M)
 {
 
-    // Declare vector of pairs
+
     vector<pair<string, int> > A;
 
-    // Copy key-value pair from Map
-    // to vector of pairs
     for (auto& it : M) {
         A.push_back(it);
     }
 
-    // Sort using comparator function
     sort(A.begin(), A.end(), cmp);
-//    auto point = find(std::begin(A), std::end(A), A.at(size(A)-1).second);
     cout<<A.at(size(A)-1).first<<" "<<A.at(size(A)-1).second<<endl;
     for(auto &mini: A){
         if(mini.second!=0){
@@ -164,9 +159,6 @@ void Sort(map<string, int>& M)
             break;
         }
     }
-
-//    std::cout<<label<<" "<<prob;
-
 
 }
 
