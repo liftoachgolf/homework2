@@ -2,6 +2,9 @@
 #include "cmath"
 #include <vector>
 #include <string>
+#include <map>
+#include <set>
+#include <algorithm>
 #include "fstream"
 
 using namespace std;
@@ -23,6 +26,21 @@ private:
 public:
 
 };
+void tusk12(int a, int b){
+    if(a!=0 && b!=0){
+        if(a>b){
+            a=a%b;
+            tusk12(a,b);
+        }
+        else{
+            b=b%a;
+            tusk12(a,b);
+        }
+    }
+    else{
+        cout<<a+b;
+    }
+}
 
 void tusk1(double a,double b){
     double max, min;
@@ -76,56 +94,166 @@ void Second::tusk2(int n){
 class FileReader{
 private:
     string line;
-    int a=0,e=0,i=0,o=0,u=0, y= 0;
+    int a=0,e=0,i=0,o=0,u=0, y=0;
 public:
     string Readfile();
     void FindSogl();
 };
 
-string FileReader::Readfile()
-{
+void diff(){
+    cout<<"Enter number: "<<endl;
+    int mas[10]= {0};
+    int n, counter = 0;
+    cin >> n;
+    while(n)
+    {
+        mas[n%10]++;
+        n/=10;
+    }
+    for(int i=0; i<10; i++)
+        if(mas[i])
+            counter++;
+    cout <<"it has:"<< counter<<"diff nums,";
+
+}
+
+
+string FileReader::Readfile() {
     std::string readline;
 
-    std::ifstream  iff("file.txt");
-    if(fopen("file.txt", "r") == NULL){
+    std::ifstream iff("file.txt");
+    if (fopen("file.txt", "r") == NULL) {
         std::ofstream oFile("file.txt");
     }
-    std::ifstream  flow("file.txt");
-    if (!flow.is_open()){
+    std::ifstream flow("file.txt");
+    if (!flow.is_open()) {
         abort();
-    }
-    else{
-        while (std::getline(flow, readline))
-        {
+    } else {
+        while (std::getline(flow, readline)) {
             return readline;
         }
     }
 }
-void FileReader::FindSogl() {
-    string startLen = this->Readfile();
-    for(int i = 0; i< startLen.size(); ++i){
-        switch (startLen[i]) {
-            case 'a':
-                a++;
-            case 'e':
-                e++;
-            case 'i':
-                i++;
-            case 'o':
-                o++;
-            case 'u':
-                u++;
-            case 'y':
-                y++;
+bool cmp(pair<string, int>& a,
+         pair<string, int>& b)
+{
+    return a.second < b.second;
+}
+
+// Function to sort the map according
+// to value in a (key-value) pairs
+void Sort(map<string, int>& M)
+{
+
+    // Declare vector of pairs
+    vector<pair<string, int> > A;
+
+    // Copy key-value pair from Map
+    // to vector of pairs
+    for (auto& it : M) {
+        A.push_back(it);
+    }
+
+    // Sort using comparator function
+    sort(A.begin(), A.end(), cmp);
+//    auto point = find(std::begin(A), std::end(A), A.at(size(A)-1).second);
+    cout<<A.at(size(A)-1).first<<" "<<A.at(size(A)-1).second<<endl;
+    for(auto &mini: A){
+        if(mini.second!=0){
+            cout<<"MIN:"<<mini.first<<" "<<mini.second<<endl;
+            break;
         }
     }
-    cout<<a;
+
+//    std::cout<<label<<" "<<prob;
+
+
+}
+
+void summi(){
+    int n;
+    int sum=0;
+
+    cout << "please, enter n = ";
+    cin >> n;
+
+    while (n!=0)
+    {
+        sum += n%10;
+        n /= 10;
+    }
+    cout << "sum = " << sum << endl;
+
+}
+
+void FileReader::FindSogl() {
+    string startLen = this->Readfile();
+    for(char w : startLen){
+        switch(w) {
+            case 'a':
+                a++;
+                break;
+            case 'e':
+                e++;
+                break;
+            case 'i':
+                i++;
+                break;
+            case 'o':
+                o++;
+                break;
+            case 'u':
+                u++;
+                break;
+            case 'y':
+                y++;
+                break;
+            default:
+                nullptr;
+        }
+    }
+    map<string, int> m={
+            {"a", a},
+            {"e", e},
+            {"i", i},
+            {"o", o},
+            {"u", u},
+            {"y", y},
+    };
+  Sort(m);
+
+}
+
+void countSpace(){
+    int maxi=0;
+    vector<int> arr;
+    string str;
+    getline(cin, str);
+    int j = str.length();
+    int spaces = 0;
+    for (int i = 0; i < j; ++i) {
+        if (str[i] == ' ') {
+            spaces++;
+            arr.push_back(spaces);
+        }
+        else{
+            spaces=0;
+            arr.push_back(spaces);
+        }
+
+    }
+    sort(arr.begin(), arr.end());
+    cout<<arr.at(size(arr)-1);
 }
 
 int main() {
     Second s;
-//    s.tusk2(13);
-    FileReader a;
-    a.FindSogl();
+    tusk12(3,12);
+//    tusk1(3,12);
+//    s.tusk2(100);
+//    FileReader a;
+//    a.FindSogl();
+//    summi();
+    diff();
+countSpace();
 }
-
